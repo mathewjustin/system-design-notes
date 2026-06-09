@@ -1,65 +1,147 @@
-import Image from "next/image";
+const sourceRepository =
+  "https://github.com/mathewjustin/DesignPatternsAndAbhyasas";
+
+const topics = [
+  {
+    title: "System Fundamentals",
+    description:
+      "The vocabulary and trade-offs that shape every architecture discussion.",
+    notes: ["Availability", "Latency and throughput", "Big-O refresher"],
+  },
+  {
+    title: "Infrastructure",
+    description:
+      "How requests move through scalable and reliable production systems.",
+    notes: ["Load balancing", "Caching", "Proxy servers", "HTTPS and certificates"],
+  },
+  {
+    title: "Data Systems",
+    description:
+      "Storage decisions, partitioning strategies, hashing, and performance.",
+    notes: ["Storage fundamentals", "Hashing", "Database partitioning"],
+  },
+  {
+    title: "Application Design",
+    description:
+      "Small design exercises and implementation patterns that build judgment.",
+    notes: ["Browser history design", "Java design patterns", "Generics notes"],
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="min-h-screen">
+      <section className="border-b border-[var(--line)] bg-[var(--surface)]">
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+          <p className="mb-5 font-mono text-sm font-semibold uppercase tracking-[0.22em] text-[var(--accent)]">
+            Learn, connect, revisit
+          </p>
+          <h1 className="max-w-4xl text-4xl font-bold tracking-[-0.04em] text-slate-950 sm:text-6xl">
+            System Design Notes
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-[var(--muted)] sm:text-xl">
+            A growing home for system design concepts, technical lessons, and
+            the small engineering insights worth remembering.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#topics"
+              className="inline-flex items-center justify-center rounded-lg bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-800"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
+              Explore the starting map
+            </a>
             <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href={sourceRepository}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center rounded-lg border border-[var(--line)] bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-teal-300 hover:text-teal-800"
             >
-              Learning
-            </a>{" "}
-            center.
+              View the original notes
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="topics" className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
+        <div className="mb-9 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+              Initial structure
+            </p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
+              Topics to build out
+            </h2>
+          </div>
+          <p className="max-w-md text-sm leading-6 text-[var(--muted)]">
+            This is a migration map, not a finished curriculum. Each topic will
+            gain original notes, diagrams, references, and examples over time.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+
+        <div className="grid gap-5 md:grid-cols-2">
+          {topics.map((topic, index) => (
+            <article
+              key={topic.title}
+              className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 shadow-[0_12px_30px_rgba(30,41,59,0.05)]"
+            >
+              <div className="flex items-center justify-between gap-4">
+                <span className="font-mono text-xs font-bold text-teal-700">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="rounded-full bg-[var(--accent-soft)] px-3 py-1 text-xs font-semibold text-teal-800">
+                  Planned
+                </span>
+              </div>
+              <h3 className="mt-5 text-xl font-bold text-slate-950">
+                {topic.title}
+              </h3>
+              <p className="mt-2 leading-7 text-[var(--muted)]">
+                {topic.description}
+              </p>
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {topic.notes.map((note) => (
+                  <li
+                    key={note}
+                    className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-sm text-slate-600"
+                  >
+                    {note}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y border-[var(--line)] bg-slate-900 text-white">
+        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-8 md:grid-cols-[1fr_auto] md:items-center">
+          <div>
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-teal-300">
+              Working agreement
+            </p>
+            <h2 className="mt-3 text-2xl font-bold">
+              Keep the source. Improve the explanation.
+            </h2>
+            <p className="mt-3 max-w-3xl leading-7 text-slate-300">
+              The original repository remains the historical notebook. This
+              site will gradually turn those topics into concise, original,
+              well-organized study material.
+            </p>
+          </div>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href={sourceRepository}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center rounded-lg border border-slate-600 px-5 py-3 text-sm font-semibold transition hover:border-teal-300 hover:text-teal-200"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+            DesignPatternsAndAbhyasas
           </a>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <footer className="mx-auto max-w-6xl px-5 py-8 text-sm text-[var(--muted)] sm:px-8">
+        Built as a long-term engineering notebook by Justin Mathew.
+      </footer>
+    </main>
   );
 }
