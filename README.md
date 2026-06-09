@@ -32,6 +32,11 @@ The production build is a static export suitable for GitHub Pages. Set
 `NEXT_PUBLIC_BASE_PATH=/system-design-notes` when building for the repository
 Pages URL.
 
+The same export is mounted in Justin's main Hugo blog at
+<https://justinmathew.com/system-design-notes/>. Pushes can trigger that blog
+deployment through `.github/workflows/trigger-blog-deploy.yml` when the
+`BLOG_REPO_DISPATCH_TOKEN` repository secret is configured.
+
 ## Direction
 
 Keep the first iterations simple. Add content as it is learned or revisited,
