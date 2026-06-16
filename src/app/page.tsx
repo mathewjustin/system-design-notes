@@ -28,6 +28,41 @@ const topics = [
   },
 ];
 
+const roadmap = [
+  {
+    stage: "01",
+    title: "Foundations",
+    description: "Scale, latency, throughput, availability, consistency, and core trade-offs.",
+  },
+  {
+    stage: "02",
+    title: "Networking",
+    description: "DNS, HTTP, load balancers, CDNs, proxies, and API gateways.",
+  },
+  {
+    stage: "03",
+    title: "Data Systems",
+    description: "SQL, NoSQL, indexes, replication, partitioning, and durability.",
+  },
+  {
+    stage: "04",
+    title: "Distributed Systems",
+    description: "Queues, caches, consensus, idempotency, backpressure, and retries.",
+  },
+  {
+    stage: "05",
+    title: "Reliability",
+    description: "SLOs, observability, rate limits, failover, and graceful degradation.",
+  },
+  {
+    stage: "06",
+    title: "Architecture Practice",
+    description: "Capacity estimates, diagrams, trade-off calls, and design reviews.",
+  },
+];
+
+const learningLoop = ["Read", "Design", "Build", "Measure"];
+
 export default function Home() {
   return (
     <main className="min-h-screen">
@@ -58,6 +93,75 @@ export default function Home() {
             >
               View the original notes
             </a>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="roadmap"
+        className="border-b border-[var(--line)] bg-white"
+      >
+        <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
+          <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+                Roadmap
+              </p>
+              <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
+                A timeline that never ends
+              </h2>
+            </div>
+            <p className="max-w-md text-sm leading-6 text-[var(--muted)]">
+              System design learning is less like finishing a checklist and
+              more like growing judgment. The timeline keeps moving because the
+              systems keep changing.
+            </p>
+          </div>
+
+          <div className="overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--surface)] shadow-[0_18px_45px_rgba(30,41,59,0.06)]">
+            <div className="relative px-5 py-8 sm:px-8">
+              <div className="absolute left-12 right-12 top-14 hidden h-px bg-slate-200 md:block" />
+              <ol className="grid gap-6 md:grid-cols-6">
+                {roadmap.map((item) => (
+                  <li key={item.stage} className="relative flex gap-4 md:block">
+                    <div className="flex flex-col items-center md:mb-5">
+                      <span className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-teal-200 bg-teal-50 font-mono text-sm font-bold text-teal-800">
+                        {item.stage}
+                      </span>
+                      <span className="h-full w-px bg-slate-200 md:hidden" />
+                    </div>
+                    <div className="min-w-0 pb-2 md:pb-0">
+                      <h3 className="text-base font-bold text-slate-950">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                        {item.description}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <div className="border-t border-[var(--line)] bg-slate-50 px-5 py-5 sm:px-8">
+              <div className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                  {learningLoop.map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-lg border border-slate-200 bg-white px-3 py-3 text-sm font-bold text-slate-700"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+                <div className="flex min-w-0 items-center gap-3 text-teal-800">
+                  <span className="endless-roadmap-line h-px flex-1 lg:w-44 lg:flex-none" />
+                  <span className="font-mono text-4xl leading-none">∞</span>
+                  <span className="text-sm font-bold">Repeat forever</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
